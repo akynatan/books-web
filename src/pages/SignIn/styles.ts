@@ -57,6 +57,10 @@ export const AnimationContainer = styled.div`
       }
     }
   }
+
+  @media only screen and (max-width: 610px) {
+    margin: 0 auto;
+  }
 `;
 
 export const ErroLogin = styled.div`
