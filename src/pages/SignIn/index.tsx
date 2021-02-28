@@ -26,7 +26,7 @@ const SignIn: React.FC = () => {
   const history = useHistory();
 
   const handleErro = useCallback(err => {
-    setErro(!err);
+    setErro(err);
   }, []);
 
   const handleSubmit = useCallback(
@@ -45,11 +45,11 @@ const SignIn: React.FC = () => {
         });
 
         await signIn({
-          email: data.email,
+          mail: data.email,
           password: data.password,
         });
 
-        history.push('/dashboard');
+        history.push('/home');
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
@@ -84,7 +84,7 @@ const SignIn: React.FC = () => {
             </Input>
           </Form>
           {erro && (
-            <ErroLogin>
+            <ErroLogin data-testid="erro-login">
               <span>Email e/ou senha incorretos.</span>
             </ErroLogin>
           )}

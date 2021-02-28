@@ -8,14 +8,17 @@ const apiMock = new MockAdpter(api);
 
 describe('Auth Hook', () => {
   it('should be able to sign in', async () => {
-    apiMock.onPost('sessions').reply(200, {
-      user: {
+    apiMock.onPost('auth/sign-in').reply(
+      200,
+      {
         id: 'id-false',
         name: 'name-false',
         email: 'akynatan@example.com',
+        birthdate: 'birthdate-false',
+        gender: 'gender-false',
       },
-      token: 'token-false',
-    });
+      { authorization: 'authorization-false' },
+    );
 
     const setItemSpy = jest.spyOn(Storage.prototype, 'setItem');
 
@@ -24,7 +27,7 @@ describe('Auth Hook', () => {
     });
 
     result.current.signIn({
-      email: 'akynatan@example.com',
+      mail: 'akynatan@example.com',
       password: '123123',
     });
 
@@ -98,7 +101,8 @@ describe('Auth Hook', () => {
       id: 'id-false',
       name: 'name-false',
       email: 'akynatan@example.com',
-      avatar_url: 'avatar-false.png',
+      gender: 'gender-false',
+      birthdate: 'birthdate-false',
     };
 
     act(() => {

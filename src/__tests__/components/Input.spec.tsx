@@ -18,7 +18,7 @@ jest.mock('@unform/core', () => {
 describe('Input Component', () => {
   it('should be able to render an input', () => {
     const { getByPlaceholderText } = render(
-      <Input name="email" placeholder="E-mail" />,
+      <Input name="email" label="E-mail" placeholder="E-mail" />,
     );
 
     expect(getByPlaceholderText('E-mail')).toBeTruthy();
@@ -26,7 +26,7 @@ describe('Input Component', () => {
 
   it('should render highlight on input focus', async () => {
     const { getByPlaceholderText, getByTestId } = render(
-      <Input name="email" placeholder="E-mail" />,
+      <Input name="email" label="E-mail" placeholder="E-mail" />,
     );
 
     const inputElement = getByPlaceholderText('E-mail');
@@ -35,21 +35,19 @@ describe('Input Component', () => {
     fireEvent.focus(inputElement);
 
     await waitFor(() => {
-      expect(containerElement).toHaveStyle('border-color: #ff9000;');
-      expect(containerElement).toHaveStyle('color: #ff9000;');
+      expect(containerElement).toHaveStyle('border-color: #fff;');
     });
 
     fireEvent.blur(inputElement);
 
     await waitFor(() => {
-      expect(containerElement).not.toHaveStyle('border-color: #ff9000;');
-      expect(containerElement).not.toHaveStyle('color: #ff9000;');
+      expect(containerElement).not.toHaveStyle('border-color: #fff;');
     });
   });
 
   it('should keep input border highlight when input filled', async () => {
     const { getByPlaceholderText, getByTestId } = render(
-      <Input name="email" placeholder="E-mail" />,
+      <Input name="email" label="E-mail" placeholder="E-mail" />,
     );
 
     const inputElement = getByPlaceholderText('E-mail');
@@ -64,7 +62,7 @@ describe('Input Component', () => {
     fireEvent.blur(inputElement);
 
     await waitFor(() => {
-      expect(containerElement).toHaveStyle('color: #ff9000;');
+      expect(containerElement).toHaveStyle('color: #fff;');
     });
   });
 });

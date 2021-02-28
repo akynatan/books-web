@@ -6,10 +6,11 @@ interface User {
   name: string;
   gender: string;
   birthdate: string;
+  email: string;
 }
 
 interface SignInCredentials {
-  email: string;
+  mail: string;
   password: string;
 }
 
@@ -40,16 +41,16 @@ const AuthProvider: React.FC = ({ children }) => {
     return {} as AuthState;
   });
 
-  const signIn = useCallback(async ({ email, password }) => {
+  const signIn = useCallback(async ({ mail, password }) => {
     const response = await api.post('auth/sign-in', {
-      email,
+      mail,
       password,
     });
 
-    const { name, id, gender, birthdate } = response.data;
+    const { name, id, gender, birthdate, email } = response.data;
     const { authorization: token } = response.headers;
 
-    const user = { id, name, gender, birthdate };
+    const user = { id, name, gender, birthdate, email };
 
     localStorage.setItem('@DesafioIoasys:token', token);
     localStorage.setItem('@DesafioIoasys:user', JSON.stringify(user));
