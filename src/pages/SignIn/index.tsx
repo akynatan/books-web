@@ -25,8 +25,8 @@ const SignIn: React.FC = () => {
 
   const history = useHistory();
 
-  const handleErro = useCallback(() => {
-    setErro(err => !err);
+  const handleErro = useCallback(err => {
+    setErro(!err);
   }, []);
 
   const handleSubmit = useCallback(
@@ -54,10 +54,10 @@ const SignIn: React.FC = () => {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
           formRef.current?.setErrors(errors);
-          handleErro();
+          handleErro(false);
           return;
         }
-        handleErro();
+        handleErro(true);
       }
     },
     [signIn, handleErro, history],
