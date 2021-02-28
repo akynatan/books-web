@@ -92,6 +92,7 @@ const Home: React.FC = () => {
 
   const handleCategory = useCallback(selectedCategory => {
     setCategory(selectedCategory.value);
+    setPage(1);
   }, []);
 
   return (
@@ -126,29 +127,33 @@ const Home: React.FC = () => {
           <Loading />
         ) : (
           <div className="list-container">
-            {books.map(book => {
-              const {
-                id,
-                title,
-                authors,
-                pageCount,
-                imageUrl,
-                published,
-                publisher,
-              } = book;
-              return (
-                <Book
-                  key={id}
-                  id={id}
-                  title={title}
-                  authors={authors}
-                  pageCount={pageCount}
-                  imageUrl={imageUrl}
-                  published={published}
-                  publisher={publisher}
-                />
-              );
-            })}
+            {books ? (
+              books.map(book => {
+                const {
+                  id,
+                  title,
+                  authors,
+                  pageCount,
+                  imageUrl,
+                  published,
+                  publisher,
+                } = book;
+                return (
+                  <Book
+                    key={id}
+                    id={id}
+                    title={title}
+                    authors={authors}
+                    pageCount={pageCount}
+                    imageUrl={imageUrl}
+                    published={published}
+                    publisher={publisher}
+                  />
+                );
+              })
+            ) : (
+              <div>Nenhum resultado...</div>
+            )}
           </div>
         )}
         <Pagination>
