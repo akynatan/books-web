@@ -50,9 +50,12 @@ const AuthProvider: React.FC = ({ children }) => {
     const { name, id, gender, birthdate, email } = response.data;
     const { authorization: token } = response.headers;
 
+    const refresh_token = response.headers['refresh-token'];
+
     const user = { id, name, gender, birthdate, email };
 
     localStorage.setItem('@DesafioIoasys:token', token);
+    localStorage.setItem('@DesafioIoasys:refresh', refresh_token);
     localStorage.setItem('@DesafioIoasys:user', JSON.stringify(user));
 
     api.defaults.headers.authorization = `Bearer ${token}`;
