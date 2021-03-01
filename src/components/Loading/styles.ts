@@ -6,8 +6,4 @@ export const Container = styled.div`
   justify-content: center;
   height: 90vh;
   width: 90vw;
-
-  img {
-    width: 100%;
-  }
 `;

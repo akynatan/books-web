@@ -12,6 +12,13 @@ export const ContentModal = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  svg {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+  }
 `;
 
 export const Book = styled.div`

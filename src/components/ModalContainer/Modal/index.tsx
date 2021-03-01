@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import Modal from 'react-modal';
+import { FaRegTimesCircle } from 'react-icons/fa';
 import { useModal } from '../../../hooks/modal';
 
 import Loading from '../../Loading';
@@ -59,6 +60,12 @@ const ContainerModal: React.FC<ModalProps> = ({ idBook }) => {
         style={{ content: { width: '60%', margin: 'auto' } }}
       >
         <ContentModal>
+          <FaRegTimesCircle
+            title="Fechar modal"
+            size={30}
+            color="red"
+            onClick={closeModal}
+          />
           {loading ? (
             <Loading />
           ) : (
